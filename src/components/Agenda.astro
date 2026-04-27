@@ -106,12 +106,13 @@ const typeStyles: Record<string, string> = {
       document.querySelectorAll('.agenda-tab').forEach(t => {
         const active = t === tab;
         t.setAttribute('aria-selected', String(active));
-        t.classList.toggle('bg-accent',   active);
-        t.classList.toggle('text-void',   active);
-        t.classList.toggle('border-accent', active);
-        t.classList.toggle('font-bold',   active);
+        t.classList.toggle('bg-accent',       active);
+        t.classList.toggle('bg-transparent',  !active);
+        t.classList.toggle('text-void',       active);
+        t.classList.toggle('border-accent',   active);
+        t.classList.toggle('font-bold',       active);
         t.classList.toggle('shadow-[0_0_20px_rgba(0,245,255,0.4)]', active);
-        t.classList.toggle('text-gray-400', !active);
+        t.classList.toggle('text-gray-400',   !active);
         t.classList.toggle('border-accent/20', !active);
       });
       document.querySelectorAll('.agenda-panel').forEach(panel => {

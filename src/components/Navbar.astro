@@ -1,15 +1,18 @@
 ---
-/**
- * Navbar – responsive top navigation.
- * Mobile: hamburger toggle (pure CSS, no JS dependency for perf).
- * Links: Agenda | SANS Workshops | Call for Papers | Venue
- */
+import { t, type Lang } from '../i18n/ui';
+
+const lang = (Astro.currentLocale ?? 'pl') as Lang;
+const otherLang = lang === 'pl' ? 'en' : 'pl';
+
+// Build the alternate-language path by swapping the lang segment
+const currentPath = Astro.url.pathname;
+const otherPath = currentPath.replace(`/${lang}/`, `/${otherLang}/`).replace(`/${lang}`, `/${otherLang}`);
 
 const navLinks = [
-  { label: 'O Konferencji', href: '#about' },
-  { label: 'Ścieżki',       href: '#workshops' },
-  { label: 'Agenda',        href: '#agenda' },
-  { label: 'Call for Papers', href: '/cfp' },
+  { label: t(lang, 'nav.about'),  href: `/${lang}/#about`    },
+  { label: t(lang, 'nav.tracks'), href: `/${lang}/#workshops` },
+  { label: t(lang, 'nav.agenda'), href: `/${lang}/#agenda`    },
+  { label: t(lang, 'nav.cfp'),    href: `/${lang}/cfp`        },
 ];
 ---
 
@@ -22,7 +25,7 @@ const navLinks = [
     aria-label="Main navigation"
   >
     <!-- Brand / Logo -->
-    <a href="/" class="flex items-center gap-3 group" aria-label="CC4ES 2026 home">
+    <a href={`/${lang}/`} class="flex items-center gap-3 group" aria-label="CC4ES 2026 home">
       <img
         src="/cc4es.png"
         alt="CC4ES — Cybersecurity Conference for Energy Sector"
@@ -30,7 +33,6 @@ const navLinks = [
         width="135"
         height="90"
       />
-      <!-- Pulse indicator – simulates a live OT sensor -->
       <span class="relative flex h-2 w-2" aria-hidden="true">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
@@ -53,22 +55,32 @@ const navLinks = [
       ))}
     </ul>
 
+    <!-- Language switcher -->
+    <a
+      href={otherPath}
+      class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5
+             border border-accent/30 text-accent font-mono text-xs tracking-widest uppercase
+             hover:bg-accent hover:text-void transition-all duration-200
+             hover:shadow-[0_0_15px_rgba(0,245,255,0.3)]"
+      style="clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);"
+      aria-label={`Switch to ${otherLang === 'en' ? 'English' : 'Polish'}`}
+    >
+      {otherLang.toUpperCase()}
+    </a>
 
-    <!-- Mobile hamburger (CSS-only checkbox trick) -->
+    <!-- Mobile hamburger -->
     <label class="md:hidden cursor-pointer p-2 -mr-2 text-gray-400 hover:text-accent transition-colors" aria-label="Toggle menu">
       <input type="checkbox" id="mobile-menu-toggle" class="peer sr-only" />
-      <!-- Hamburger icon -->
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 peer-checked:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
-      <!-- Close icon -->
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden peer-checked:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </label>
   </nav>
 
-  <!-- Mobile dropdown menu -->
+  <!-- Mobile dropdown -->
   <div
     id="mobile-menu"
     class="md:hidden hidden border-t border-accent/20 bg-void/95 backdrop-blur-md px-6 py-4"
@@ -76,20 +88,24 @@ const navLinks = [
     <ul class="flex flex-col gap-4" role="list">
       {navLinks.map(({ label, href }) => (
         <li>
-          <a
-            href={href}
-            class="font-mono text-sm text-gray-300 hover:text-accent transition-colors"
-          >
+          <a href={href} class="font-mono text-sm text-gray-300 hover:text-accent transition-colors">
             &gt; {label}
           </a>
         </li>
       ))}
+      <li class="pt-3 border-t border-accent/20">
+        <a
+          href={otherPath}
+          class="inline-flex items-center gap-2 font-mono text-sm text-accent hover:text-white transition-colors"
+        >
+          &gt; {otherLang.toUpperCase()} — {otherLang === 'en' ? 'English' : 'Polski'}
+        </a>
+      </li>
     </ul>
   </div>
 </header>
 
 <script>
-  // Wire the mobile checkbox to show/hide the dropdown
   const toggle = document.getElementById('mobile-menu-toggle') as HTMLInputElement;
   const menu   = document.getElementById('mobile-menu') as HTMLDivElement;
 
@@ -97,7 +113,6 @@ const navLinks = [
     menu.classList.toggle('hidden', !toggle.checked);
   });
 
-  // Close menu when a link is clicked
   menu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       toggle.checked = false;

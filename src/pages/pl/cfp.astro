@@ -1,0 +1,99 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CfpForm, { type CfpTranslations } from '../../components/CfpForm.tsx';
+import { t } from '../../i18n/ui';
+
+const lang = 'pl';
+
+const tr: CfpTranslations = {
+  paperTitle: t(lang, 'form.paperTitle'), authors: t(lang, 'form.authors'),
+  affiliation: t(lang, 'form.affiliation'), topic: t(lang, 'form.topic'),
+  email: t(lang, 'form.email'), abstract: t(lang, 'form.abstract'),
+  comments: t(lang, 'form.comments'), required: t(lang, 'form.required'),
+  submit: t(lang, 'form.submit'), submitting: t(lang, 'form.submitting'),
+  selectTopic: t(lang, 'form.selectTopic'), wordCount: t(lang, 'form.wordCount'),
+  titlePh: t(lang, 'form.titlePh'), authorsPh: t(lang, 'form.authorsPh'),
+  affiliationPh: t(lang, 'form.affiliationPh'), abstractPh: t(lang, 'form.abstractPh'),
+  commentsPh: t(lang, 'form.commentsPh'),
+  successTitle: t(lang, 'form.successTitle'), successMsg: t(lang, 'form.successMsg'),
+  successDate: t(lang, 'form.successDate'), successAgain: t(lang, 'form.successAgain'),
+  errorMsg: t(lang, 'form.errorMsg'),
+  valTitleRequired: t(lang, 'val.titleRequired'), valAbstractMin: t(lang, 'val.abstractMin'),
+  valAbstractMax: t(lang, 'val.abstractMax'), valAuthorsRequired: t(lang, 'val.authorsRequired'),
+  valAffiliationReq: t(lang, 'val.affiliationReq'), valTopicRequired: t(lang, 'val.topicRequired'),
+  valEmailRequired: t(lang, 'val.emailRequired'), valEmailInvalid: t(lang, 'val.emailInvalid'),
+};
+---
+
+<MainLayout
+  title="Call for Papers — CC4ES 2026"
+  description="Zgłoś swój referat na CC4ES 2026. Konferencja poświęcona cyberbezpieczeństwu OT/ICS. Józefów, 21–23 września 2026."
+>
+  <div class="max-w-5xl mx-auto px-6 pt-40 pb-24">
+
+    <nav class="font-mono text-xs text-gray-600 mb-10" aria-label="Breadcrumb">
+      <a href="/pl/" class="hover:text-accent transition-colors">CC4ES 2026</a>
+      <span class="mx-2 text-surface">/</span>
+      <span class="text-gray-400">Call for Papers</span>
+    </nav>
+
+    <div class="mb-12">
+      <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'cfpPage.eyebrow')}</p>
+      <h1 class="font-mono font-bold text-4xl sm:text-5xl text-white mb-4">{t(lang, 'cfpPage.title')}</h1>
+      <p class="font-mono text-sm text-gray-400 max-w-2xl leading-relaxed">
+        {t(lang, 'cfpPage.subtitle')} <span class="text-accent">{t(lang, 'cfpPage.deadline')}</span>.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-[1fr_300px] gap-10 items-start">
+      <div class="p-8 rounded border border-surface bg-surface/20">
+        <CfpForm client:load tr={tr} />
+      </div>
+
+      <div class="space-y-6 sticky top-20">
+        <div class="p-5 rounded border border-surface bg-surface/30">
+          <h2 class="font-mono font-semibold text-white mb-3 text-sm">{t(lang, 'cfpPage.topicsTitle')}</h2>
+          <ul class="space-y-1.5 font-mono text-xs text-gray-400">
+            {[
+              'OT/ICS Threat Intelligence & Attribution',
+              'Reagowanie na incydenty w infrastrukturze krytycznej',
+              'Segmentacja sieci i Zero Trust dla OT',
+              'Bezpieczny zdalny dostęp i zarządzanie dostawcami',
+              'Zgodność z NIS2 / IEC 62443',
+              'Zastosowania AI/ML w bezpieczeństwie OT',
+              'Badania podatności SCADA i HMI',
+              'Bezpieczeństwo łańcucha dostaw dla sektora energetycznego',
+            ].map(topic => (
+              <li class="flex items-start gap-2">
+                <span class="text-accent/70 mt-px shrink-0">&gt;</span>{topic}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="p-5 rounded border border-surface bg-surface/30">
+          <h2 class="font-mono font-semibold text-white mb-3 text-sm">{t(lang, 'cfpPage.datesTitle')}</h2>
+          <dl class="space-y-2 font-mono text-xs">
+            {[
+              { label: 'Otwarcie zgłoszeń',  date: '1 marca 2026'        },
+              { label: 'Termin abstraktów',  date: '31 maja 2026'        },
+              { label: 'Powiadomienia',      date: '30 czerwca 2026'     },
+              { label: 'Pełny tekst',        date: '31 lipca 2026'       },
+              { label: 'Konferencja',        date: '21–23 września 2026' },
+            ].map(({ label, date }) => (
+              <div class="flex justify-between items-center border-b border-surface/60 pb-2 last:border-0">
+                <dt class="text-gray-400">{label}</dt>
+                <dd class="text-accent">{date}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <p class="font-mono text-[11px] text-gray-600 text-center">
+          {t(lang, 'cfpPage.problems')}<br/>
+          <a href="mailto:cfp@cc4es.pl" class="text-accent hover:underline">cfp@cc4es.pl</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</MainLayout>

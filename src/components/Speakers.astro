@@ -1,16 +1,17 @@
 ---
 import speakers from '../data/speakers.json';
+import { t, type Lang } from '../i18n/ui';
+
+const lang = (Astro.currentLocale ?? 'pl') as Lang;
 ---
 
 <section id="speakers" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
   <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
     <div>
-      <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">// Keynote</p>
-      <h2 class="font-display font-bold text-4xl text-white leading-tight" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">Speakers</h2>
+      <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'speakers.eyebrow')}</p>
+      <h2 class="font-display font-bold text-4xl text-white leading-tight" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">{t(lang, 'speakers.title')}</h2>
     </div>
-    <p class="font-mono text-sm text-gray-500 max-w-xs">
-      World-class practitioners from critical infrastructure, government, and academia.
-    </p>
+    <p class="font-mono text-sm text-gray-500 max-w-xs">{t(lang, 'speakers.subtitle')}</p>
   </div>
 
   <div class="grid md:grid-cols-3 gap-6">
@@ -21,13 +22,9 @@ import speakers from '../data/speakers.json';
                hover:shadow-[0_0_30px_rgba(0,245,255,0.08)]"
         style="clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));"
       >
-
-        <!-- Avatar placeholder -->
         <div class="aspect-[4/3] bg-grid-pattern bg-grid-40 relative overflow-hidden
                     border-b border-accent/10 flex items-center justify-center">
           <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,245,255,0.07)_0%,transparent_70%)]" />
-
-          <!-- Initials avatar -->
           <div class="relative z-10 flex flex-col items-center gap-3">
             <div class="w-20 h-20 border-2 border-accent/50 bg-surface
                         flex items-center justify-center font-mono font-bold text-xl text-accent"
@@ -35,26 +32,22 @@ import speakers from '../data/speakers.json';
               {speaker.placeholder}
             </div>
             <span class="font-mono text-[10px] tracking-widest text-accent/40 uppercase">
-              Photo TBA
+              {t(lang, 'speakers.photoTba')}
             </span>
           </div>
         </div>
 
-        <!-- Info -->
         <div class="flex flex-col flex-1 p-6 gap-3">
           <div>
             <p class="font-mono text-xs text-accent tracking-wider mb-1" style="text-shadow: 0 0 8px rgba(0,245,255,0.5);">{speaker.org}</p>
             <h3 class="font-sans font-semibold text-white text-lg leading-tight">{speaker.name}</h3>
             <p class="font-mono text-xs text-gray-500 mt-0.5">{speaker.role}</p>
           </div>
-
           <div class="flex-1">
             <p class="font-sans text-sm text-gray-400 leading-relaxed">{speaker.bio}</p>
           </div>
-
-          <!-- Talk topic -->
           <div class="pt-3 border-t border-accent/10">
-            <p class="font-mono text-[10px] tracking-widest text-accent/40 uppercase mb-1">Topic</p>
+            <p class="font-mono text-[10px] tracking-widest text-accent/40 uppercase mb-1">{t(lang, 'speakers.topic')}</p>
             <p class="font-sans text-sm text-gray-300 leading-snug">{speaker.topic}</p>
           </div>
         </div>

@@ -11,6 +11,13 @@ export default defineConfig({
   build: {
     assets: 'assets',
   },
+  i18n: {
+    defaultLocale: 'pl',
+    locales: ['pl', 'en'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
 
   // Vite dev-server config — allowedHosts: true wyłącza sprawdzanie hosta (czas testów)
   vite: {

@@ -1,10 +1,14 @@
 ---
+import { t, type Lang } from '../i18n/ui';
+
+const lang = (Astro.currentLocale ?? 'pl') as Lang;
+
 const stats = [
-  { value: '3',      label: 'Conference Days'   },
-  { value: '300+',   label: 'Expert Attendees'  },
-  { value: '20+',    label: 'Sessions & Talks'  },
-  { value: '10+',    label: 'Countries'         },
-  { value: 'EU',     label: 'Hosted in Poland'  },
+  { value: '3',    label: t(lang, 'stats.days')      },
+  { value: '300+', label: t(lang, 'stats.attendees') },
+  { value: '20+',  label: t(lang, 'stats.sessions')  },
+  { value: '10+',  label: t(lang, 'stats.countries') },
+  { value: 'EU',   label: t(lang, 'stats.hosted')    },
 ];
 ---
 

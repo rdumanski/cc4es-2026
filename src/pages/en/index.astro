@@ -1,0 +1,178 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Hero       from '../../components/Hero.astro';
+import StatsStrip from '../../components/StatsStrip.astro';
+import Speakers   from '../../components/Speakers.astro';
+import Agenda     from '../../components/Agenda.astro';
+import Sponsors   from '../../components/Sponsors.astro';
+import VideoSection from '../../components/VideoSection.astro';
+import { t } from '../../i18n/ui';
+
+const lang = 'en';
+---
+
+<MainLayout
+  title="CC4ES 2026 — Cybersecurity Conference for Energy Sector"
+  description="CC4ES 2026. Organized by CERT PSE in partnership with SANS Institute. Józefów, September 21–23, 2026."
+>
+  <Hero />
+  <StatsStrip />
+
+  <!-- ABOUT -->
+  <section id="about" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="font-mono text-xs tracking-widest text-accent mb-3 uppercase">{t(lang, 'about.eyebrow')}</p>
+        <h2 class="font-display font-bold text-4xl text-white mb-6 leading-tight" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">
+          {t(lang, 'about.title')}
+        </h2>
+        <div class="space-y-4 font-sans text-gray-400 leading-relaxed text-base">
+          <p>{t(lang, 'about.p1')}</p>
+          <p>
+            Hosted by <span class="text-white">CERT PSE</span> in partnership with
+            <span class="text-white">SANS Institute</span>, the three-day event combines
+            technical deep-dives, hands-on workshops and strategic discussions on protecting
+            critical energy infrastructure.
+          </p>
+        </div>
+      </div>
+      <div class="p-8 border border-accent/20 bg-surface/20 space-y-6 font-mono text-sm"
+           style="clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); box-shadow: 0 0 30px rgba(0,245,255,0.06) inset;">
+        {[
+          { icon: '//01', label: t(lang, 'about.infoDate'),     value: t(lang, 'about.dateValue')     },
+          { icon: '//02', label: t(lang, 'about.infoVenue'),    value: t(lang, 'about.venueValue')    },
+          { icon: '//03', label: t(lang, 'about.infoLanguage'), value: t(lang, 'about.languageValue') },
+          { icon: '//04', label: t(lang, 'about.infoFocus'),    value: t(lang, 'about.focusValue')    },
+          { icon: '//05', label: t(lang, 'about.infoPartner'),  value: t(lang, 'about.partnerValue')  },
+        ].map(({ icon, label, value }) => (
+          <div class="flex items-start gap-4 pb-4 border-b border-accent/10 last:border-0 last:pb-0">
+            <span class="text-[10px] text-accent/40 mt-1 shrink-0" aria-hidden="true">{icon}</span>
+            <div>
+              <p class="text-[10px] tracking-widest text-accent/40 uppercase mb-0.5">{label}</p>
+              <p class="text-gray-200">{value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-accent/10 max-w-7xl mx-auto" />
+  <VideoSection />
+  <div class="border-t border-accent/10 max-w-7xl mx-auto" />
+  <Speakers />
+  <div class="border-t border-accent/10 max-w-7xl mx-auto" />
+  <Agenda />
+  <div class="border-t border-accent/10 max-w-7xl mx-auto" />
+
+  <!-- TRACKS / WORKSHOPS -->
+  <section id="workshops" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
+    <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'workshops.eyebrow')}</p>
+    <h2 class="font-display font-bold text-4xl text-white mb-8" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">{t(lang, 'workshops.title')}</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {[
+        { code: 'ICS410', title: 'ICS/SCADA Security Essentials', level: 'Foundational',
+          desc: 'Full-day foundational workshop covering ICS architecture, threats, and defensive controls. Ideal for practitioners new to OT security.',
+          color: 'rgba(0,245,255,0.06)' },
+        { code: 'ICS515', title: 'ICS Visibility, Detection & Response', level: 'Advanced',
+          desc: 'Advanced hands-on lab focused on network monitoring, anomaly detection and incident response in industrial environments.',
+          color: 'rgba(191,0,255,0.06)' },
+      ].map(({ code, title, desc, level, color }) => (
+        <div class="p-6 border border-accent/15 bg-surface/20 hover:border-accent/40 transition-all hover:shadow-[0_0_25px_rgba(0,245,255,0.08)]"
+             style={`clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); box-shadow: 0 0 20px ${color} inset;`}>
+          <div class="flex items-start justify-between mb-4">
+            <span class="font-mono text-xs text-accent border border-accent/30 bg-accent/5 px-2 py-0.5"
+                  style="clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);">
+              SANS {code}
+            </span>
+            <span class="font-mono text-xs text-accent/40">{level}</span>
+          </div>
+          <h3 class="font-sans font-semibold text-white text-lg mb-2">{title}</h3>
+          <p class="font-sans text-sm text-gray-400 leading-relaxed">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="border-t border-accent/10 max-w-7xl mx-auto" />
+
+  <!-- CALL FOR PAPERS -->
+  <section id="cfp" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
+    <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'cfp.eyebrow')}</p>
+    <h2 class="font-display font-bold text-4xl text-white mb-8" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">{t(lang, 'cfp.title')}</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="p-6 border border-accent/15 bg-surface/20"
+           style="clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));">
+        <h4 class="font-mono font-semibold text-accent mb-4 text-sm tracking-widest uppercase">{t(lang, 'cfp.topicsTitle')}</h4>
+        <ul class="space-y-2 font-mono text-sm text-gray-400">
+          {[
+            'OT/ICS Threat Intelligence & Attribution',
+            'Incident Response in Critical Infrastructure',
+            'Network Segmentation & Zero Trust for OT',
+            'Secure Remote Access & Vendor Management',
+            'NIS2 / IEC 62443 Compliance',
+            'AI/ML Applications in OT Security',
+            'SCADA & HMI Vulnerability Research',
+            'Supply Chain Security for Energy Sector',
+          ].map(topic => (
+            <li class="flex items-start gap-2">
+              <span class="text-accent mt-px shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);" aria-hidden="true">&gt;</span>
+              {topic}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="p-6 border border-accent/15 bg-surface/20 flex flex-col"
+           style="clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));">
+        <h4 class="font-mono font-semibold text-accent mb-4 text-sm tracking-widest uppercase">{t(lang, 'cfp.datesTitle')}</h4>
+        <dl class="space-y-3 font-mono text-sm flex-1">
+          {[
+            { label: 'Submission Opens',  date: 'March 1, 2026'     },
+            { label: 'Abstract Deadline', date: 'May 31, 2026'      },
+            { label: 'Notification',      date: 'June 30, 2026'     },
+            { label: 'Full Paper Due',    date: 'July 31, 2026'     },
+            { label: 'Conference',        date: 'Sept 21–23, 2026'  },
+          ].map(({ label, date }) => (
+            <div class="flex justify-between items-center border-b border-accent/10 pb-2 last:border-0">
+              <dt class="text-gray-400">{label}</dt>
+              <dd class="text-accent" style="text-shadow: 0 0 8px rgba(0,245,255,0.5);">{date}</dd>
+            </div>
+          ))}
+        </dl>
+        <a href="/en/cfp"
+           class="mt-8 inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent text-void font-mono font-bold text-sm hover:bg-accent-dim transition-all hover:shadow-[0_0_25px_rgba(0,245,255,0.5)]"
+           style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
+          {t(lang, 'cfp.submitBtn')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t border-accent/10 max-w-7xl mx-auto" />
+  <Sponsors />
+  <div class="border-t border-accent/10 max-w-7xl mx-auto" />
+
+  <!-- VENUE -->
+  <section id="venue" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
+    <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'venue.eyebrow')}</p>
+    <h2 class="font-display font-bold text-4xl text-white mb-8" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">{t(lang, 'venue.title')}</h2>
+    <div class="grid sm:grid-cols-2 gap-6 max-w-2xl">
+      <div class="p-6 border border-accent/15 bg-surface/20 font-mono text-sm space-y-2"
+           style="clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));">
+        <p class="text-accent font-semibold text-base" style="text-shadow: 0 0 10px rgba(0,245,255,0.5);">Holiday Inn Józefów</p>
+        <p class="text-gray-400">ul. Generała Józefa Zajączka</p>
+        <p class="text-gray-400">05-420 Józefów, Poland</p>
+        <p class="text-neon-pink pt-1" style="text-shadow: 0 0 8px rgba(255,42,109,0.5);">{t(lang, 'venue.distance')}</p>
+      </div>
+      <div class="p-6 border border-accent/15 bg-surface/20 font-mono text-sm space-y-3"
+           style="clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));">
+        <p class="text-[10px] tracking-widest text-accent/40 uppercase">{t(lang, 'venue.gettingThere')}</p>
+        <ul class="space-y-2 text-gray-400">
+          <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.train')}</li>
+          <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.car')}</li>
+          <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.shuttle')}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</MainLayout>

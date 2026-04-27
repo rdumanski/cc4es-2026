@@ -1,45 +1,30 @@
-/**
- * Countdown – client-side React component.
- * Counts down to CC4ES 2026 (September 21, 2026).
- * Uses Framer Motion for the digit-flip entrance animation.
- */
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Conference date: September 21, 2026 — update if needed
 const CONFERENCE_DATE = new Date('2026-09-21T08:00:00+02:00');
 
-interface TimeUnit {
-  value: number;
-  label: string;
+interface TimeUnit { value: number; label: string; }
+
+interface Props {
+  labels?: [string, string, string, string];
 }
 
-function pad(n: number): string {
-  return String(n).padStart(2, '0');
-}
+function pad(n: number): string { return String(n).padStart(2, '0'); }
 
-function getTimeLeft(): TimeUnit[] {
+function getTimeLeft(labels: [string, string, string, string]): TimeUnit[] {
   const diff = Math.max(0, CONFERENCE_DATE.getTime() - Date.now());
-  const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours   = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
   return [
-    { value: days,    label: 'DAYS'    },
-    { value: hours,   label: 'HRS'     },
-    { value: minutes, label: 'MIN'     },
-    { value: seconds, label: 'SEC'     },
+    { value: Math.floor(diff / (1000 * 60 * 60 * 24)),       label: labels[0] },
+    { value: Math.floor((diff / (1000 * 60 * 60)) % 24),     label: labels[1] },
+    { value: Math.floor((diff / (1000 * 60)) % 60),           label: labels[2] },
+    { value: Math.floor((diff / 1000) % 60),                  label: labels[3] },
   ];
 }
 
-// Animated digit block
 function DigitBlock({ value, label }: TimeUnit) {
   const display = pad(value);
-
   return (
     <div className="flex flex-col items-center gap-1">
-      {/* Digit display with flip animation on change */}
       <div
         className="relative w-16 h-16 sm:w-20 sm:h-20 bg-surface border border-accent/40
                    flex items-center justify-center overflow-hidden"
@@ -48,10 +33,8 @@ function DigitBlock({ value, label }: TimeUnit) {
           boxShadow: '0 0 12px rgba(0,245,255,0.15) inset, 0 0 8px rgba(0,245,255,0.1)',
         }}
       >
-        {/* Scanline overlay */}
         <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.15)_2px,rgba(0,0,0,0.15)_4px)] pointer-events-none z-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.04] to-transparent pointer-events-none" />
-
         <AnimatePresence mode="popLayout">
           <motion.span
             key={display}
@@ -65,24 +48,22 @@ function DigitBlock({ value, label }: TimeUnit) {
             {display}
           </motion.span>
         </AnimatePresence>
-
-        {/* Corner tick marks */}
         <span className="absolute top-1 left-1 w-2 h-2 border-t border-l border-accent/60" aria-hidden="true" />
         <span className="absolute top-1 right-1 w-2 h-2 border-t border-r border-accent/60" aria-hidden="true" />
         <span className="absolute bottom-1 left-1 w-2 h-2 border-b border-l border-accent/60" aria-hidden="true" />
         <span className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-accent/60" aria-hidden="true" />
       </div>
-
       <span className="font-mono text-[10px] tracking-widest text-accent/60">{label}</span>
     </div>
   );
 }
 
-export default function Countdown() {
-  const [units, setUnits] = useState<TimeUnit[]>(getTimeLeft());
+export default function Countdown({ labels = ['DAYS', 'HRS', 'MIN', 'SEC'] }: Props) {
+  const l = labels as [string, string, string, string];
+  const [units, setUnits] = useState<TimeUnit[]>(getTimeLeft(l));
 
   useEffect(() => {
-    const id = setInterval(() => setUnits(getTimeLeft()), 1000);
+    const id = setInterval(() => setUnits(getTimeLeft(l)), 1000);
     return () => clearInterval(id);
   }, []);
 
@@ -91,14 +72,8 @@ export default function Countdown() {
       {units.map((unit, i) => (
         <div key={unit.label} className="flex items-start gap-3 sm:gap-4">
           <DigitBlock {...unit} />
-          {/* Separator colon – hidden after last unit */}
           {i < units.length - 1 && (
-            <span
-              className="font-mono text-accent text-2xl font-bold mt-3 select-none animate-pulse-slow"
-              aria-hidden="true"
-            >
-              :
-            </span>
+            <span className="font-mono text-accent text-2xl font-bold mt-3 select-none animate-pulse-slow" aria-hidden="true">:</span>
           )}
         </div>
       ))}

@@ -1,11 +1,9 @@
 ---
-/**
- * Hero – split layout.
- * Left: animated title, subtitle, countdown, CTAs.
- * Right: 2×2 image grid (replace .hero-img-* backgrounds with real photos).
- */
 import Countdown from './Countdown.tsx';
 import HeroAnimations from './HeroAnimations.tsx';
+import { t, type Lang } from '../i18n/ui';
+
+const lang = (Astro.currentLocale ?? 'pl') as Lang;
 ---
 
 <section
@@ -13,7 +11,6 @@ import HeroAnimations from './HeroAnimations.tsx';
   class="relative min-h-screen flex items-center px-6 pt-36 pb-16 overflow-hidden"
   aria-label="CC4ES 2026 hero"
 >
-  <!-- Radial glows – cyan + pink duotone -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2
                 w-[700px] h-[700px] rounded-full
@@ -24,23 +21,31 @@ import HeroAnimations from './HeroAnimations.tsx';
   </div>
 
   <div class="relative z-10 max-w-5xl mx-auto w-full flex flex-col items-center gap-8">
-    <HeroAnimations client:load />
+    <HeroAnimations
+      client:load
+      badge={t(lang, 'hero.badge')}
+      subtitle={t(lang, 'hero.subtitle')}
+      date={t(lang, 'hero.date')}
+      location={t(lang, 'hero.location')}
+      learnMore={t(lang, 'hero.learnMore')}
+      contact={t(lang, 'hero.contact')}
+      lang={lang}
+    />
 
-    <!-- Countdown -->
     <div class="flex flex-col items-center gap-2">
       <p class="font-mono text-[10px] tracking-widest text-gray-600 uppercase">
-        &#9632; Conference begins in
+        &#9632; {t(lang, 'hero.countdown')}
       </p>
-      <Countdown client:load />
+      <Countdown
+        client:load
+        labels={[t(lang, 'time.days'), t(lang, 'time.hrs'), t(lang, 'time.min'), t(lang, 'time.sec')]}
+      />
     </div>
   </div>
 
-  <!-- Scroll hint -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-30"
-       aria-hidden="true">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-30" aria-hidden="true">
     <span class="font-mono text-[10px] tracking-widest text-gray-500">SCROLL</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 animate-bounce"
-         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
     </svg>
   </div>

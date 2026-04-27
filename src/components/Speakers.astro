@@ -11,13 +11,34 @@ const lang = (Astro.currentLocale ?? 'pl') as Lang;
       <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'speakers.eyebrow')}</p>
       <h2 class="font-display font-bold text-4xl text-white leading-tight" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">{t(lang, 'speakers.title')}</h2>
     </div>
-    <p class="font-mono text-sm text-gray-500 max-w-xs">{t(lang, 'speakers.subtitle')}</p>
+    <div class="flex items-center gap-6">
+      <p class="font-mono text-sm text-gray-500 max-w-xs hidden sm:block">{t(lang, 'speakers.subtitle')}</p>
+      <div class="flex gap-2 shrink-0">
+        <button id="speakers-prev" aria-label="Previous speaker"
+          class="w-10 h-10 border border-accent/30 bg-surface/30 text-accent font-mono font-bold
+                 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_15px_rgba(0,245,255,0.3)]
+                 transition-all duration-200 flex items-center justify-center"
+          style="clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);">
+          &#8592;
+        </button>
+        <button id="speakers-next" aria-label="Next speaker"
+          class="w-10 h-10 border border-accent/30 bg-surface/30 text-accent font-mono font-bold
+                 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_15px_rgba(0,245,255,0.3)]
+                 transition-all duration-200 flex items-center justify-center"
+          style="clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);">
+          &#8594;
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="grid md:grid-cols-3 gap-6">
+  <!-- Carousel track -->
+  <div id="speakers-track"
+       class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
+       style="scrollbar-width: none; -ms-overflow-style: none;">
     {speakers.map((speaker) => (
       <article
-        class="group flex flex-col border border-accent/15 bg-surface/20
+        class="snap-start shrink-0 w-[min(340px,calc(100vw-48px))] flex flex-col border border-accent/15 bg-surface/20
                hover:border-accent/50 transition-all duration-300 overflow-hidden
                hover:shadow-[0_0_30px_rgba(0,245,255,0.08)]"
         style="clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));"
@@ -62,4 +83,66 @@ const lang = (Astro.currentLocale ?? 'pl') as Lang;
       </article>
     ))}
   </div>
+
+  <!-- Dots -->
+  <div class="flex justify-center gap-3 mt-8">
+    {speakers.map((_, i) => (
+      <button
+        class="speakers-dot transition-all duration-200 border border-accent/40 hover:border-accent"
+        data-index={i}
+        aria-label={`Speaker ${i + 1}`}
+        style={i === 0
+          ? 'width:24px; height:6px; background:rgba(0,245,255,0.8); box-shadow:0 0 8px rgba(0,245,255,0.5); clip-path:polygon(3px 0%,100% 0%,calc(100% - 3px) 100%,0% 100%);'
+          : 'width:6px; height:6px; background:transparent; clip-path:polygon(3px 0%,100% 0%,calc(100% - 3px) 100%,0% 100%);'}
+      />
+    ))}
+  </div>
 </section>
+
+<style>
+  #speakers-track::-webkit-scrollbar { display: none; }
+</style>
+
+<script>
+  const track    = document.getElementById('speakers-track')!;
+  const dots     = document.querySelectorAll<HTMLButtonElement>('.speakers-dot');
+  const prevBtn  = document.getElementById('speakers-prev')!;
+  const nextBtn  = document.getElementById('speakers-next')!;
+  const total    = dots.length;
+  let current    = 0;
+
+  function cardWidth() {
+    const card = track.querySelector<HTMLElement>('article');
+    return card ? card.offsetWidth + 24 : 0; // gap-6 = 24px
+  }
+
+  function goTo(index: number) {
+    current = Math.max(0, Math.min(index, total - 1));
+    track.scrollTo({ left: current * cardWidth(), behavior: 'smooth' });
+    dots.forEach((dot, i) => {
+      if (i === current) {
+        dot.style.width = '24px';
+        dot.style.background = 'rgba(0,245,255,0.8)';
+        dot.style.boxShadow = '0 0 8px rgba(0,245,255,0.5)';
+      } else {
+        dot.style.width = '6px';
+        dot.style.background = 'transparent';
+        dot.style.boxShadow = 'none';
+      }
+    });
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+  // Sync dots when user drags/swipes
+  let scrollTimer: ReturnType<typeof setTimeout>;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const idx = Math.round(track.scrollLeft / cardWidth());
+      if (idx !== current) goTo(idx);
+    }, 80);
+  }, { passive: true });
+</script>

@@ -1,8 +1,53 @@
 ---
 import sponsorsData from '../data/sponsors.json';
-import { t, type Lang } from '../i18n/ui';
+import { t, type Lang, type TranslationKey } from '../i18n/ui';
 
 const lang = (Astro.currentLocale ?? 'pl') as Lang;
+
+type TierName = 'Strategic Partner' | 'Diamond' | 'Platinum' | 'Gold' | 'Silver' | 'Media Partners';
+
+const tierConfig: Record<TierName, {
+  px: string; py: string; minW: string; textCls: string;
+  border: string; emptyBorder: string; glow: string;
+  labelColor: string; dividerColor: string;
+}> = {
+  'Strategic Partner': {
+    px: 'px-10', py: 'py-6', minW: 'min-w-[220px]', textCls: 'text-base font-semibold text-gray-300',
+    border: 'border-accent/20', emptyBorder: 'border-accent/10',
+    glow: '0 0 20px rgba(0,245,255,0.08) inset',
+    labelColor: 'text-accent/50', dividerColor: 'rgba(0,245,255,0.15)',
+  },
+  'Diamond': {
+    px: 'px-12', py: 'py-8', minW: 'min-w-[280px]', textCls: 'text-lg font-bold text-white',
+    border: 'border-sky-200/30', emptyBorder: 'border-sky-200/15',
+    glow: '0 0 30px rgba(186,230,255,0.14) inset',
+    labelColor: 'text-sky-300/70', dividerColor: 'rgba(186,230,255,0.25)',
+  },
+  'Platinum': {
+    px: 'px-8', py: 'py-5', minW: 'min-w-[180px]', textCls: 'text-sm text-gray-300',
+    border: 'border-neon-purple/20', emptyBorder: 'border-neon-purple/10',
+    glow: '0 0 20px rgba(191,0,255,0.08) inset',
+    labelColor: 'text-neon-purple/60', dividerColor: 'rgba(191,0,255,0.18)',
+  },
+  'Gold': {
+    px: 'px-6', py: 'py-4', minW: 'min-w-[150px]', textCls: 'text-sm text-gray-400',
+    border: 'border-neon-yellow/20', emptyBorder: 'border-neon-yellow/10',
+    glow: '0 0 16px rgba(255,230,0,0.07) inset',
+    labelColor: 'text-neon-yellow/60', dividerColor: 'rgba(255,230,0,0.18)',
+  },
+  'Silver': {
+    px: 'px-5', py: 'py-3', minW: 'min-w-[130px]', textCls: 'text-xs text-gray-500',
+    border: 'border-gray-500/20', emptyBorder: 'border-gray-500/10',
+    glow: '0 0 12px rgba(160,160,160,0.06) inset',
+    labelColor: 'text-gray-500/60', dividerColor: 'rgba(160,160,160,0.15)',
+  },
+  'Media Partners': {
+    px: 'px-5', py: 'py-3', minW: 'min-w-[130px]', textCls: 'text-xs text-gray-500',
+    border: 'border-accent/10', emptyBorder: 'border-accent/05',
+    glow: '0 0 10px rgba(0,245,255,0.04) inset',
+    labelColor: 'text-accent/30', dividerColor: 'rgba(0,245,255,0.08)',
+  },
+};
 ---
 
 <section id="sponsors" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
@@ -12,45 +57,56 @@ const lang = (Astro.currentLocale ?? 'pl') as Lang;
   </div>
 
   <div class="space-y-12">
-    {sponsorsData.tiers.map(tier => (
-      <div>
-        <div class="flex items-center gap-4 mb-6">
-          <span class="font-mono text-xs tracking-widest text-gray-600 uppercase">{tier.name}</span>
-          <div class="flex-1 h-px bg-gradient-to-r from-accent/20 to-transparent" />
+    {sponsorsData.tiers.map(tier => {
+      const cfg        = tierConfig[tier.name as TierName] ?? tierConfig['Silver'];
+      const tierLabel  = t(lang, `tier.${tier.name}` as TranslationKey);
+      const emptySlots = Math.max(0, tier.slots - tier.sponsors.length);
+
+      return (
+        <div>
+          <!-- Tier label + divider -->
+          <div class="flex items-center gap-4 mb-6">
+            <span class:list={['font-mono text-xs tracking-widest uppercase shrink-0', cfg.labelColor]}>
+              {tierLabel}
+            </span>
+            <div class="flex-1 h-px" style={`background: linear-gradient(to right, ${cfg.dividerColor}, transparent);`} />
+          </div>
+
+          <!-- Sponsor boxes -->
+          <div class="flex flex-wrap gap-4 items-center">
+            {tier.sponsors.map(sponsor => (
+              <a
+                href={sponsor.url}
+                target={sponsor.url !== '#' ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                class:list={[
+                  'flex items-center justify-center border bg-surface/30',
+                  'hover:bg-surface/50 transition-all duration-200 font-mono',
+                  cfg.border, cfg.px, cfg.py, cfg.minW, cfg.textCls,
+                ]}
+                style={cfg.glow ? `box-shadow: ${cfg.glow};` : ''}
+              >
+                {sponsor.name}
+              </a>
+            ))}
+
+            {Array.from({ length: emptySlots }).map(() => (
+              <a
+                href="mailto:sponsorship@cc4es.pl"
+                class:list={[
+                  'flex items-center justify-center border border-dashed bg-transparent',
+                  'hover:bg-surface/20 transition-all duration-200 font-mono',
+                  'text-gray-700 hover:text-accent',
+                  cfg.emptyBorder, cfg.px, cfg.py, cfg.minW,
+                  tier.name === 'Diamond' ? 'text-sm' : 'text-xs',
+                ]}
+              >
+                {t(lang, 'sponsors.yourBrand')}
+              </a>
+            ))}
+          </div>
         </div>
-        <div class:list={['flex flex-wrap gap-4', tier.name === 'Strategic Partner' ? 'items-center' : '']}>
-          {tier.sponsors.map(sponsor => (
-            <a
-              href={sponsor.url}
-              target={sponsor.url !== '#' ? '_blank' : undefined}
-              rel="noopener noreferrer"
-              class:list={[
-                'group flex items-center justify-center border border-accent/15 bg-surface/30',
-                'hover:border-accent/40 transition-all duration-200 hover:shadow-[0_0_15px_rgba(0,245,255,0.1)]',
-                'font-mono text-sm text-gray-500 hover:text-accent',
-                tier.name === 'Strategic Partner' ? 'px-10 py-6 text-base font-semibold text-gray-300 min-w-[200px]'
-                : tier.name === 'Platinum'        ? 'px-8 py-5 min-w-[160px]'
-                :                                   'px-6 py-4 min-w-[130px]',
-              ]}
-            >
-              {sponsor.name}
-            </a>
-          ))}
-          <a
-            href="mailto:sponsorship@cc4es.pl"
-            class:list={[
-              'flex items-center justify-center border border-dashed border-accent/15',
-              'hover:border-accent/40 transition-all duration-200',
-              'font-mono text-xs text-gray-700 hover:text-accent hover:shadow-[0_0_10px_rgba(0,245,255,0.1)]',
-              tier.name === 'Strategic Partner' ? 'px-10 py-6 min-w-[200px]'
-              : tier.name === 'Platinum'        ? 'px-8 py-5 min-w-[160px]'
-              :                                   'px-6 py-4 min-w-[130px]',
-            ]}
-          >
-            {t(lang, 'sponsors.yourBrand')}
-          </a>
-        </div>
-      </div>
-    ))}
+      );
+    })}
   </div>
 </section>

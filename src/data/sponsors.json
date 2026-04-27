@@ -2,12 +2,19 @@
   "tiers": [
     {
       "name": "Strategic Partner",
+      "slots": 1,
       "sponsors": [
         { "name": "SANS Institute", "url": "https://www.sans.org" }
       ]
     },
     {
+      "name": "Diamond",
+      "slots": 1,
+      "sponsors": []
+    },
+    {
       "name": "Platinum",
+      "slots": 2,
       "sponsors": [
         { "name": "Sponsor A", "url": "#" },
         { "name": "Sponsor B", "url": "#" }
@@ -15,6 +22,7 @@
     },
     {
       "name": "Gold",
+      "slots": 3,
       "sponsors": [
         { "name": "Sponsor C", "url": "#" },
         { "name": "Sponsor D", "url": "#" },
@@ -22,7 +30,13 @@
       ]
     },
     {
+      "name": "Silver",
+      "slots": 5,
+      "sponsors": []
+    },
+    {
       "name": "Media Partners",
+      "slots": 2,
       "sponsors": [
         { "name": "Partner F", "url": "#" },
         { "name": "Partner G", "url": "#" }

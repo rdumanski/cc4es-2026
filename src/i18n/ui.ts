@@ -70,9 +70,15 @@ export const ui = {
     'cfp.submitBtn':    'Zgłoś referat →',
 
     // Sponsors
-    'sponsors.eyebrow':   '// Partnerzy',
-    'sponsors.title':     'Sponsorzy',
-    'sponsors.yourBrand': '+ Twoja marka',
+    'sponsors.eyebrow':          '// Partnerzy',
+    'sponsors.title':            'Sponsorzy',
+    'sponsors.yourBrand':        '+ Twoja marka',
+    'tier.Strategic Partner':    'Partner Strategiczny',
+    'tier.Diamond':              'Diamentowy',
+    'tier.Platinum':             'Platynowy',
+    'tier.Gold':                 'Złoty',
+    'tier.Silver':               'Srebrny',
+    'tier.Media Partners':       'Partnerzy Medialni',
 
     // Venue
     'venue.eyebrow':       '// Lokalizacja',
@@ -205,9 +211,15 @@ export const ui = {
     'cfp.submitBtn':    'Submit Your Paper →',
 
     // Sponsors
-    'sponsors.eyebrow':   '// Partners',
-    'sponsors.title':     'Sponsors',
-    'sponsors.yourBrand': '+ Your brand',
+    'sponsors.eyebrow':          '// Partners',
+    'sponsors.title':            'Sponsors',
+    'sponsors.yourBrand':        '+ Your brand',
+    'tier.Strategic Partner':    'Strategic Partner',
+    'tier.Diamond':              'Diamond',
+    'tier.Platinum':             'Platinum',
+    'tier.Gold':                 'Gold',
+    'tier.Silver':               'Silver',
+    'tier.Media Partners':       'Media Partners',
 
     // Venue
     'venue.eyebrow':       '// Location',

@@ -1,0 +1,91 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CfpForm from '../components/CfpForm.tsx';
+---
+
+<MainLayout
+  title="Call for Papers — CC4ES 2026"
+  description="Zgłoś swój referat na CC4ES 2026. Konferencja poświęcona cyberbezpieczeństwu infrastruktury krytycznej OT/ICS. Józefów, 21–23 września 2026."
+>
+  <div class="max-w-5xl mx-auto px-6 pt-40 pb-24">
+
+    <!-- Breadcrumb -->
+    <nav class="font-mono text-xs text-gray-600 mb-10" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-accent transition-colors">CC4ES 2026</a>
+      <span class="mx-2 text-surface">/</span>
+      <span class="text-gray-400">Call for Papers</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">// 03</p>
+      <h1 class="font-mono font-bold text-4xl sm:text-5xl text-white mb-4">
+        Call for Papers
+      </h1>
+      <p class="font-mono text-sm text-gray-400 max-w-2xl leading-relaxed">
+        Zapraszamy do zgłaszania referatów na CC4ES 2026. Komitet programowy oceni każde zgłoszenie
+        i poinformuje autorów do <span class="text-accent">30 czerwca 2026</span>.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-[1fr_300px] gap-10 items-start">
+
+      <!-- Formularz -->
+      <div class="p-8 rounded border border-surface bg-surface/20">
+        <CfpForm client:load />
+      </div>
+
+      <!-- Sidebar -->
+      <div class="space-y-6 sticky top-20">
+
+        <!-- Topics -->
+        <div class="p-5 rounded border border-surface bg-surface/30">
+          <h2 class="font-mono font-semibold text-white mb-3 text-sm">Topics of Interest</h2>
+          <ul class="space-y-1.5 font-mono text-xs text-gray-400">
+            {[
+              'OT/ICS Threat Intelligence & Attribution',
+              'Incident Response in Critical Infrastructure',
+              'Network Segmentation & Zero Trust for OT',
+              'Secure Remote Access & Vendor Management',
+              'NIS2 / IEC 62443 Compliance',
+              'AI/ML Applications in OT Security',
+              'SCADA & HMI Vulnerability Research',
+              'Supply Chain Security for Energy Sector',
+            ].map(topic => (
+              <li class="flex items-start gap-2">
+                <span class="text-accent/70 mt-px shrink-0">&gt;</span>
+                {topic}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Key Dates -->
+        <div class="p-5 rounded border border-surface bg-surface/30">
+          <h2 class="font-mono font-semibold text-white mb-3 text-sm">Key Dates</h2>
+          <dl class="space-y-2 font-mono text-xs">
+            {[
+              { label: 'Submission Opens',  date: 'March 1, 2026'    },
+              { label: 'Abstract Deadline', date: 'May 31, 2026'     },
+              { label: 'Notification',      date: 'June 30, 2026'    },
+              { label: 'Full Paper Due',    date: 'July 31, 2026'    },
+              { label: 'Conference',        date: 'Sept 21–23, 2026' },
+            ].map(({ label, date }) => (
+              <div class="flex justify-between items-center border-b border-surface/60 pb-2 last:border-0">
+                <dt class="text-gray-400">{label}</dt>
+                <dd class="text-accent">{date}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <!-- Fallback -->
+        <p class="font-mono text-[11px] text-gray-600 text-center">
+          Problemy z formularzem?<br/>
+          <a href="mailto:cfp@cc4es.pl" class="text-accent hover:underline">cfp@cc4es.pl</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</MainLayout>

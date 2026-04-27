@@ -1,0 +1,107 @@
+---
+/**
+ * Navbar – responsive top navigation.
+ * Mobile: hamburger toggle (pure CSS, no JS dependency for perf).
+ * Links: Agenda | SANS Workshops | Call for Papers | Venue
+ */
+
+const navLinks = [
+  { label: 'O Konferencji', href: '#about' },
+  { label: 'Ścieżki',       href: '#workshops' },
+  { label: 'Agenda',        href: '#agenda' },
+  { label: 'Call for Papers', href: '/cfp' },
+];
+---
+
+<header
+  class="fixed top-[64px] inset-x-0 z-40 border-b border-accent/20 backdrop-blur-md bg-void/90"
+  style="box-shadow: 0 1px 30px rgba(0,245,255,0.06);"
+>
+  <nav
+    class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+    aria-label="Main navigation"
+  >
+    <!-- Brand / Logo -->
+    <a href="/" class="flex items-center gap-3 group" aria-label="CC4ES 2026 home">
+      <img
+        src="/cc4es.png"
+        alt="CC4ES — Cybersecurity Conference for Energy Sector"
+        class="h-9 w-auto"
+        width="135"
+        height="90"
+      />
+      <!-- Pulse indicator – simulates a live OT sensor -->
+      <span class="relative flex h-2 w-2" aria-hidden="true">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-8" role="list">
+      {navLinks.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class="font-mono text-sm text-gray-400 hover:text-accent transition-colors duration-200 relative
+                   after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent
+                   after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+
+    <!-- Mobile hamburger (CSS-only checkbox trick) -->
+    <label class="md:hidden cursor-pointer p-2 -mr-2 text-gray-400 hover:text-accent transition-colors" aria-label="Toggle menu">
+      <input type="checkbox" id="mobile-menu-toggle" class="peer sr-only" />
+      <!-- Hamburger icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 peer-checked:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <!-- Close icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden peer-checked:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </label>
+  </nav>
+
+  <!-- Mobile dropdown menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-accent/20 bg-void/95 backdrop-blur-md px-6 py-4"
+  >
+    <ul class="flex flex-col gap-4" role="list">
+      {navLinks.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class="font-mono text-sm text-gray-300 hover:text-accent transition-colors"
+          >
+            &gt; {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  // Wire the mobile checkbox to show/hide the dropdown
+  const toggle = document.getElementById('mobile-menu-toggle') as HTMLInputElement;
+  const menu   = document.getElementById('mobile-menu') as HTMLDivElement;
+
+  toggle?.addEventListener('change', () => {
+    menu.classList.toggle('hidden', !toggle.checked);
+  });
+
+  // Close menu when a link is clicked
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.checked = false;
+      menu.classList.add('hidden');
+    });
+  });
+</script>

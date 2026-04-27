@@ -1,0 +1,32 @@
+{
+  "tiers": [
+    {
+      "name": "Strategic Partner",
+      "sponsors": [
+        { "name": "SANS Institute", "url": "https://www.sans.org" }
+      ]
+    },
+    {
+      "name": "Platinum",
+      "sponsors": [
+        { "name": "Sponsor A", "url": "#" },
+        { "name": "Sponsor B", "url": "#" }
+      ]
+    },
+    {
+      "name": "Gold",
+      "sponsors": [
+        { "name": "Sponsor C", "url": "#" },
+        { "name": "Sponsor D", "url": "#" },
+        { "name": "Sponsor E", "url": "#" }
+      ]
+    },
+    {
+      "name": "Media Partners",
+      "sponsors": [
+        { "name": "Partner F", "url": "#" },
+        { "name": "Partner G", "url": "#" }
+      ]
+    }
+  ]
+}

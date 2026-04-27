@@ -1,0 +1,26 @@
+[
+  {
+    "name": "TBA — Keynote Speaker",
+    "role": "Director, Critical Infrastructure Protection",
+    "org": "ENISA",
+    "topic": "NIS2 and the Energy Sector: From Directive to Reality",
+    "bio": "Leading European cybersecurity policy expert specialising in critical infrastructure resilience and cross-border incident coordination.",
+    "placeholder": "KS1"
+  },
+  {
+    "name": "TBA — SANS Faculty",
+    "role": "Senior Instructor",
+    "org": "SANS Institute",
+    "topic": "ICS515: Visibility and Detection in OT Environments",
+    "bio": "SANS ICS curriculum lead with 15+ years of hands-on experience in industrial control system security assessments and incident response.",
+    "placeholder": "SF"
+  },
+  {
+    "name": "TBA — Industry Expert",
+    "role": "Head of OT Security",
+    "org": "European Energy Operator",
+    "topic": "Real-World Attack on a European Power Grid: Lessons Learned",
+    "bio": "Seasoned practitioner who led the response to a major grid cyber incident. Brings unfiltered operational perspective to threat modelling and resilience.",
+    "placeholder": "IE"
+  }
+]

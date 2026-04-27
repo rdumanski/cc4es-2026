@@ -1,0 +1,153 @@
+{
+  "conference": "CC4ES 2026",
+  "dates": "September 21–23, 2026",
+  "venue": "Holiday Inn Józefów",
+  "days": [
+    {
+      "date": "2026-09-21",
+      "label": "Day 1 — OT/ICS Threat Landscape",
+      "tracks": [
+        {
+          "time": "08:00",
+          "type": "logistics",
+          "title": "Registration & Welcome Coffee",
+          "speaker": null
+        },
+        {
+          "time": "09:00",
+          "type": "keynote",
+          "title": "Opening Keynote: State of Critical Infrastructure Security in 2026",
+          "speaker": "CERT PSE Director",
+          "tags": ["OT", "Strategic"]
+        },
+        {
+          "time": "10:00",
+          "type": "talk",
+          "title": "SANS ICS515: ICS Visibility & Detection — Workshop Preview",
+          "speaker": "SANS Institute Faculty",
+          "tags": ["ICS", "Detection", "SANS"]
+        },
+        {
+          "time": "11:00",
+          "type": "talk",
+          "title": "Threat Intelligence for Energy Sector: From OSINT to Actionable IOCs",
+          "speaker": "TBA",
+          "tags": ["Threat Intel", "Energy"]
+        },
+        {
+          "time": "12:30",
+          "type": "logistics",
+          "title": "Lunch Break",
+          "speaker": null
+        },
+        {
+          "time": "14:00",
+          "type": "workshop",
+          "title": "Hands-on: Purdue Model Segmentation Lab",
+          "speaker": "SANS Institute",
+          "tags": ["Workshop", "Network", "Segmentation"]
+        },
+        {
+          "time": "16:00",
+          "type": "talk",
+          "title": "Case Study: Real-World Attack on European Power Grid",
+          "speaker": "TBA (Confidential)",
+          "tags": ["Case Study", "Incident Response"]
+        },
+        {
+          "time": "17:30",
+          "type": "logistics",
+          "title": "Networking Reception",
+          "speaker": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "label": "Day 2 — Resilience & Future Directions",
+      "tracks": [
+        {
+          "time": "09:00",
+          "type": "keynote",
+          "title": "Keynote: NIS2 & the Energy Sector — Compliance vs. Security",
+          "speaker": "EU Agency for Cybersecurity (ENISA) Representative",
+          "tags": ["NIS2", "Compliance", "Policy"]
+        },
+        {
+          "time": "10:00",
+          "type": "talk",
+          "title": "Secure Remote Access for OT: Zero Trust in the Field",
+          "speaker": "TBA",
+          "tags": ["Zero Trust", "Remote Access", "OT"]
+        },
+        {
+          "time": "11:00",
+          "type": "workshop",
+          "title": "SANS Workshop: ICS Network Forensics",
+          "speaker": "SANS Institute Faculty",
+          "tags": ["Forensics", "SANS", "Workshop"]
+        },
+        {
+          "time": "12:30",
+          "type": "logistics",
+          "title": "Lunch Break",
+          "speaker": null
+        },
+        {
+          "time": "14:00",
+          "type": "panel",
+          "title": "Panel: AI in ICS Security — Hype vs. Reality",
+          "speaker": "Panelists TBA",
+          "tags": ["AI", "ML", "Panel"]
+        },
+        {
+          "time": "15:30",
+          "type": "talk",
+          "title": "Call for Papers: Selected Presentations",
+          "speaker": "CfP Authors",
+          "tags": ["CfP", "Research"]
+        },
+        {
+          "time": "17:00",
+          "type": "keynote",
+          "title": "Closing Day 2: Looking Ahead",
+          "speaker": "CERT PSE",
+          "tags": ["Closing"]
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "label": "Day 3 — SANS Deep-Dive Workshops",
+      "tracks": [
+        {
+          "time": "09:00",
+          "type": "workshop",
+          "title": "SANS ICS410: ICS/SCADA Security Essentials — Full-Day Workshop",
+          "speaker": "SANS Institute Faculty",
+          "tags": ["SANS", "Workshop", "ICS410"]
+        },
+        {
+          "time": "12:30",
+          "type": "logistics",
+          "title": "Lunch Break",
+          "speaker": null
+        },
+        {
+          "time": "14:00",
+          "type": "workshop",
+          "title": "SANS ICS515: ICS Visibility, Detection & Response — Afternoon Lab",
+          "speaker": "SANS Institute Faculty",
+          "tags": ["SANS", "Workshop", "ICS515"]
+        },
+        {
+          "time": "17:00",
+          "type": "keynote",
+          "title": "Closing Ceremony & CC4ES 2027 Announcement",
+          "speaker": "CERT PSE Director",
+          "tags": ["Closing"]
+        }
+      ]
+    }
+  ]
+}

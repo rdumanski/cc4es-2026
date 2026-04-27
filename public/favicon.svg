@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background -->
+  <rect width="32" height="32" rx="4" fill="#0A0A0A"/>
+  <!-- Pulse / signal icon in Electric Blue -->
+  <polyline points="2,16 7,16 9,10 12,22 15,6 18,24 21,14 24,14 26,16 30,16"
+            stroke="#00A3FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

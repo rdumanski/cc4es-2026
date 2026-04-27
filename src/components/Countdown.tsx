@@ -68,12 +68,12 @@ export default function Countdown({ labels = ['DAYS', 'HRS', 'MIN', 'SEC'] }: Pr
   }, []);
 
   return (
-    <div className="flex items-center gap-3 sm:gap-4" role="timer" aria-label="Time until CC4ES 2026">
+    <div className="flex items-center gap-1.5 sm:gap-3" role="timer" aria-label="Time until CC4ES 2026">
       {units.map((unit, i) => (
-        <div key={unit.label} className="flex items-start gap-3 sm:gap-4">
+        <div key={unit.label} className="flex items-start gap-1.5 sm:gap-3">
           <DigitBlock {...unit} />
           {i < units.length - 1 && (
-            <span className="font-mono text-accent text-2xl font-bold mt-3 select-none animate-pulse-slow" aria-hidden="true">:</span>
+            <span className="font-mono text-accent text-lg sm:text-2xl font-bold mt-3 sm:mt-4 select-none animate-pulse-slow" aria-hidden="true">:</span>
           )}
         </div>
       ))}

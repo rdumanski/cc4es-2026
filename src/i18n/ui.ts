@@ -60,7 +60,7 @@ export const ui = {
 
     // Workshops
     'workshops.eyebrow': '// Szkolenia praktyczne',
-    'workshops.title':   'Warsztaty SANS',
+    'workshops.title':   'Warsztaty',
 
     // CFP section (on main page)
     'cfp.eyebrow':      '// Zgłoszenia',
@@ -201,7 +201,7 @@ export const ui = {
 
     // Workshops
     'workshops.eyebrow': '// Hands-on training',
-    'workshops.title':   'SANS Workshops',
+    'workshops.title':   'Workshops',
 
     // CFP section (on main page)
     'cfp.eyebrow':      '// Submit',

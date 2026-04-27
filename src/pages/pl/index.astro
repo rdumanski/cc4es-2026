@@ -69,26 +69,43 @@ const lang = 'pl';
   <section id="workshops" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
     <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'workshops.eyebrow')}</p>
     <h2 class="font-display font-bold text-4xl text-white mb-8" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">{t(lang, 'workshops.title')}</h2>
-    <div class="grid sm:grid-cols-2 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {[
         { code: 'ICS410', title: 'ICS/SCADA Security Essentials', level: 'Podstawowy',
           desc: 'Całodniowy warsztat obejmujący architekturę ICS, zagrożenia i mechanizmy obronne. Idealny dla osób rozpoczynających pracę z bezpieczeństwem OT.',
-          color: 'rgba(0,245,255,0.06)' },
+          color: 'rgba(0,245,255,0.06)', tba: false },
         { code: 'ICS515', title: 'ICS Visibility, Detection & Response', level: 'Zaawansowany',
           desc: 'Zaawansowane laboratorium hands-on skupiające się na monitoringu sieci, wykrywaniu anomalii i reagowaniu na incydenty w środowiskach przemysłowych.',
-          color: 'rgba(191,0,255,0.06)' },
-      ].map(({ code, title, desc, level, color }) => (
-        <div class="p-6 border border-accent/15 bg-surface/20 hover:border-accent/40 transition-all hover:shadow-[0_0_25px_rgba(0,245,255,0.08)]"
+          color: 'rgba(191,0,255,0.06)', tba: false },
+        { code: 'TBA', title: 'Warsztat — szczegóły wkrótce', level: 'TBA',
+          desc: 'Tytuł, poziom zaawansowania i opis warsztatu zostaną ogłoszone wkrótce.',
+          color: 'rgba(255,230,0,0.04)', tba: true },
+        { code: 'TBA', title: 'Warsztat — szczegóły wkrótce', level: 'TBA',
+          desc: 'Tytuł, poziom zaawansowania i opis warsztatu zostaną ogłoszone wkrótce.',
+          color: 'rgba(255,42,109,0.04)', tba: true },
+        { code: 'TBA', title: 'Warsztat — szczegóły wkrótce', level: 'TBA',
+          desc: 'Tytuł, poziom zaawansowania i opis warsztatu zostaną ogłoszone wkrótce.',
+          color: 'rgba(0,245,255,0.04)', tba: true },
+        { code: 'TBA', title: 'Warsztat — szczegóły wkrótce', level: 'TBA',
+          desc: 'Tytuł, poziom zaawansowania i opis warsztatu zostaną ogłoszone wkrótce.',
+          color: 'rgba(191,0,255,0.04)', tba: true },
+      ].map(({ code, title, desc, level, color, tba }) => (
+        <div class:list={[
+               'p-6 border bg-surface/20 transition-all',
+               tba
+                 ? 'border-dashed border-accent/10 opacity-50'
+                 : 'border-accent/15 hover:border-accent/40 hover:shadow-[0_0_25px_rgba(0,245,255,0.08)]',
+             ]}
              style={`clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); box-shadow: 0 0 20px ${color} inset;`}>
           <div class="flex items-start justify-between mb-4">
             <span class="font-mono text-xs text-accent border border-accent/30 bg-accent/5 px-2 py-0.5"
                   style="clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);">
-              SANS {code}
+              {code}
             </span>
             <span class="font-mono text-xs text-accent/40">{level}</span>
           </div>
-          <h3 class="font-sans font-semibold text-white text-lg mb-2">{title}</h3>
-          <p class="font-sans text-sm text-gray-400 leading-relaxed">{desc}</p>
+          <h3 class:list={['font-sans font-semibold text-lg mb-2', tba ? 'text-gray-600' : 'text-white']}>{title}</h3>
+          <p class="font-sans text-sm text-gray-500 leading-relaxed">{desc}</p>
         </div>
       ))}
     </div>

@@ -156,22 +156,36 @@ const lang = 'en';
   <section id="venue" class="max-w-7xl mx-auto px-6 py-24 scroll-mt-36">
     <p class="font-mono text-xs tracking-widest text-accent mb-2 uppercase">{t(lang, 'venue.eyebrow')}</p>
     <h2 class="font-display font-bold text-4xl text-white mb-8" style="text-shadow: 0 0 20px rgba(0,245,255,0.3);">{t(lang, 'venue.title')}</h2>
-    <div class="grid sm:grid-cols-2 gap-6 max-w-2xl">
-      <div class="p-6 border border-accent/15 bg-surface/20 font-mono text-sm space-y-2"
-           style="clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));">
-        <p class="text-accent font-semibold text-base" style="text-shadow: 0 0 10px rgba(0,245,255,0.5);">Holiday Inn Józefów</p>
-        <p class="text-gray-400">ul. Generała Józefa Zajączka</p>
-        <p class="text-gray-400">05-420 Józefów, Poland</p>
-        <p class="text-neon-pink pt-1" style="text-shadow: 0 0 8px rgba(255,42,109,0.5);">{t(lang, 'venue.distance')}</p>
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+      <!-- Photo -->
+      <div class="relative overflow-hidden border border-accent/15"
+           style="clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));">
+        <img
+          src="https://wa-uploads.profitroom.com/holidayinnwarszawajozefow1/495x605/17417008656764_dji0341hdr2.webp"
+          alt="Holiday Inn Józefów"
+          class="w-full object-cover"
+          style="max-height: 420px; object-position: center 60%;"
+        />
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);"></div>
       </div>
-      <div class="p-6 border border-accent/15 bg-surface/20 font-mono text-sm space-y-3"
-           style="clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));">
-        <p class="text-[10px] tracking-widest text-accent/40 uppercase">{t(lang, 'venue.gettingThere')}</p>
-        <ul class="space-y-2 text-gray-400">
-          <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.train')}</li>
-          <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.car')}</li>
-          <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.shuttle')}</li>
-        </ul>
+      <!-- Info cards -->
+      <div class="flex flex-col gap-6">
+        <div class="p-6 border border-accent/15 bg-surface/20 font-mono text-sm space-y-2"
+             style="clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));">
+          <p class="text-accent font-semibold text-base" style="text-shadow: 0 0 10px rgba(0,245,255,0.5);">Holiday Inn Józefów</p>
+          <p class="text-gray-400">ul. Generała Józefa Zajączka</p>
+          <p class="text-gray-400">05-420 Józefów, Poland</p>
+          <p class="text-neon-pink pt-1" style="text-shadow: 0 0 8px rgba(255,42,109,0.5);">{t(lang, 'venue.distance')}</p>
+        </div>
+        <div class="p-6 border border-accent/15 bg-surface/20 font-mono text-sm space-y-3"
+             style="clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));">
+          <p class="text-[10px] tracking-widest text-accent/40 uppercase">{t(lang, 'venue.gettingThere')}</p>
+          <ul class="space-y-2 text-gray-400">
+            <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.train')}</li>
+            <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.car')}</li>
+            <li class="flex gap-2"><span class="text-accent shrink-0" style="text-shadow: 0 0 8px rgba(0,245,255,0.8);">&gt;</span> {t(lang, 'venue.shuttle')}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>

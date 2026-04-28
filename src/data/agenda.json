@@ -5,148 +5,54 @@
   "days": [
     {
       "date": "2026-09-21",
-      "label": "Day 1 — OT/ICS Threat Landscape",
+      "label_pl": "Dzień 1 — Warsztaty",
+      "label_en": "Day 1 — Workshops",
       "tracks": [
-        {
-          "time": "08:00",
-          "type": "logistics",
-          "title": "Registration & Welcome Coffee",
-          "speaker": null
-        },
-        {
-          "time": "09:00",
-          "type": "keynote",
-          "title": "Opening Keynote: State of Critical Infrastructure Security in 2026",
-          "speaker": "CERT PSE Director",
-          "tags": ["OT", "Strategic"]
-        },
-        {
-          "time": "10:00",
-          "type": "talk",
-          "title": "SANS ICS515: ICS Visibility & Detection — Workshop Preview",
-          "speaker": "SANS Institute Faculty",
-          "tags": ["ICS", "Detection", "SANS"]
-        },
-        {
-          "time": "11:00",
-          "type": "talk",
-          "title": "Threat Intelligence for Energy Sector: From OSINT to Actionable IOCs",
-          "speaker": "TBA",
-          "tags": ["Threat Intel", "Energy"]
-        },
-        {
-          "time": "12:30",
-          "type": "logistics",
-          "title": "Lunch Break",
-          "speaker": null
-        },
-        {
-          "time": "14:00",
-          "type": "workshop",
-          "title": "Hands-on: Purdue Model Segmentation Lab",
-          "speaker": "SANS Institute",
-          "tags": ["Workshop", "Network", "Segmentation"]
-        },
-        {
-          "time": "16:00",
-          "type": "talk",
-          "title": "Case Study: Real-World Attack on European Power Grid",
-          "speaker": "TBA (Confidential)",
-          "tags": ["Case Study", "Incident Response"]
-        },
-        {
-          "time": "17:30",
-          "type": "logistics",
-          "title": "Networking Reception",
-          "speaker": null
-        }
+        { "time": "08:00–09:00", "type": "logistics",  "title_pl": "Rejestracja i powitalna kawa",               "title_en": "Registration & welcome coffee",                          "speaker": null },
+        { "time": "09:00–13:00", "type": "workshop",   "title_pl": "Otwarcie i rozpoczęcie warsztatów",          "title_en": "Opening remarks & workshops",                            "speaker": null },
+        { "time": "13:00–14:00", "type": "logistics",  "title_pl": "Przerwa obiadowa",                           "title_en": "Lunch break",                                            "speaker": null },
+        { "time": "14:00–18:00", "type": "workshop",   "title_pl": "Kontynuacja warsztatów",                     "title_en": "Workshops",                                              "speaker": null },
+        { "time": "18:00–18:10", "type": "logistics",  "title_pl": "Podsumowanie",                               "title_en": "Day 1 Wrap-up",                                          "speaker": null },
+        { "time": "18:30–21:00", "type": "logistics",  "title_pl": "Grill & Networking",                         "title_en": "Grill & Networking",                                     "speaker": null }
       ]
     },
     {
       "date": "2026-09-22",
-      "label": "Day 2 — Resilience & Future Directions",
+      "label_pl": "Dzień 2 — Konferencja",
+      "label_en": "Day 2 — Conference",
       "tracks": [
-        {
-          "time": "09:00",
-          "type": "keynote",
-          "title": "Keynote: NIS2 & the Energy Sector — Compliance vs. Security",
-          "speaker": "EU Agency for Cybersecurity (ENISA) Representative",
-          "tags": ["NIS2", "Compliance", "Policy"]
-        },
-        {
-          "time": "10:00",
-          "type": "talk",
-          "title": "Secure Remote Access for OT: Zero Trust in the Field",
-          "speaker": "TBA",
-          "tags": ["Zero Trust", "Remote Access", "OT"]
-        },
-        {
-          "time": "11:00",
-          "type": "workshop",
-          "title": "SANS Workshop: ICS Network Forensics",
-          "speaker": "SANS Institute Faculty",
-          "tags": ["Forensics", "SANS", "Workshop"]
-        },
-        {
-          "time": "12:30",
-          "type": "logistics",
-          "title": "Lunch Break",
-          "speaker": null
-        },
-        {
-          "time": "14:00",
-          "type": "panel",
-          "title": "Panel: AI in ICS Security — Hype vs. Reality",
-          "speaker": "Panelists TBA",
-          "tags": ["AI", "ML", "Panel"]
-        },
-        {
-          "time": "15:30",
-          "type": "talk",
-          "title": "Call for Papers: Selected Presentations",
-          "speaker": "CfP Authors",
-          "tags": ["CfP", "Research"]
-        },
-        {
-          "time": "17:00",
-          "type": "keynote",
-          "title": "Closing Day 2: Looking Ahead",
-          "speaker": "CERT PSE",
-          "tags": ["Closing"]
-        }
+        { "time": "09:00–09:10", "type": "logistics",  "title_pl": "Otwarcie konferencji (PSE + SANS)",          "title_en": "Opening Remarks (PSE + SANS)",                           "speaker": null },
+        { "time": "09:10–09:50", "type": "keynote",    "title_pl": "Keynote",                                    "title_en": "Keynote",                                                "speaker": "TBA" },
+        { "time": "09:50–10:30", "type": "keynote",    "title_pl": "Keynote – Global ICS/OT Leader (np. SANS / DOE / ENISA)", "title_en": "Keynote – Global ICS/OT Leader (e.g. SANS / DOE / ENISA)", "speaker": "TBA" },
+        { "time": "10:30–10:50", "type": "logistics",  "title_pl": "Przerwa kawowa",                             "title_en": "Coffee Break",                                           "speaker": null },
+        { "time": "10:50–11:20", "type": "talk",       "title_pl": "Technical Talk",                             "title_en": "Technical Talk",                                         "speaker": "TBA" },
+        { "time": "11:20–11:50", "type": "talk",       "title_pl": "Technical Talk – ICS/OT Deep Dive",          "title_en": "Technical Talk – ICS/OT Deep Dive",                     "speaker": "TBA" },
+        { "time": "11:50–12:20", "type": "talk",       "title_pl": "Technical Talk",                             "title_en": "Technical Talk",                                         "speaker": "TBA" },
+        { "time": "12:20–13:20", "type": "logistics",  "title_pl": "Lunch",                                      "title_en": "Lunch",                                                  "speaker": null },
+        { "time": "13:20–13:50", "type": "talk",       "title_pl": "Hero Talk: Real Incident / Ukraina / Attack Case", "title_en": "Hero Talk: Real Incident / Ukraine / Attack Case",  "speaker": "TBA" },
+        { "time": "13:50–14:20", "type": "talk",       "title_pl": "Technical Talk",                             "title_en": "Technical Talk",                                         "speaker": "TBA" },
+        { "time": "14:20–14:50", "type": "talk",       "title_pl": "Technical Talk",                             "title_en": "Technical Talk",                                         "speaker": "TBA" },
+        { "time": "14:50–15:20", "type": "talk",       "title_pl": "Technical Talk",                             "title_en": "Technical Talk",                                         "speaker": "TBA" },
+        { "time": "15:20–15:40", "type": "logistics",  "title_pl": "Przerwa kawowa",                             "title_en": "Coffee Break",                                           "speaker": null },
+        { "time": "15:40–16:10", "type": "talk",       "title_pl": "Technical Talk",                             "title_en": "Technical Talk",                                         "speaker": "TBA" },
+        { "time": "16:10–16:50", "type": "panel",      "title_pl": "Panel: IR / CSIRT / Real Ops",               "title_en": "Panel: IR / CSIRT / Real Ops",                           "speaker": "TBA" },
+        { "time": "16:50–17:30", "type": "keynote",    "title_pl": "Closing Keynote",                            "title_en": "Closing Keynote",                                        "speaker": "TBA" },
+        { "time": "17:30–17:40", "type": "logistics",  "title_pl": "Zamknięcie konferencji",                     "title_en": "Closing Remarks",                                        "speaker": null },
+        { "time": "18:00–22:00", "type": "logistics",  "title_pl": "Kolacja networkingowa",                      "title_en": "Networking Dinner",                                      "speaker": null }
       ]
     },
     {
       "date": "2026-09-23",
-      "label": "Day 3 — SANS Deep-Dive Workshops",
+      "label_pl": "Dzień 3 — Grid NetWars",
+      "label_en": "Day 3 — Grid NetWars",
       "tracks": [
-        {
-          "time": "09:00",
-          "type": "workshop",
-          "title": "SANS ICS410: ICS/SCADA Security Essentials — Full-Day Workshop",
-          "speaker": "SANS Institute Faculty",
-          "tags": ["SANS", "Workshop", "ICS410"]
-        },
-        {
-          "time": "12:30",
-          "type": "logistics",
-          "title": "Lunch Break",
-          "speaker": null
-        },
-        {
-          "time": "14:00",
-          "type": "workshop",
-          "title": "SANS ICS515: ICS Visibility, Detection & Response — Afternoon Lab",
-          "speaker": "SANS Institute Faculty",
-          "tags": ["SANS", "Workshop", "ICS515"]
-        },
-        {
-          "time": "17:00",
-          "type": "keynote",
-          "title": "Closing Ceremony & CC4ES 2027 Announcement",
-          "speaker": "CERT PSE Director",
-          "tags": ["Closing"]
-        }
+        { "time": "09:00–09:30", "type": "logistics",  "title_pl": "Rejestracja i kawa",                         "title_en": "Registration and coffee",                                "speaker": null },
+        { "time": "09:30–10:00", "type": "logistics",  "title_pl": "Otwarcie i powitanie Uczestników Grid NetWars", "title_en": "Opening NetWars Presentation",                       "speaker": null },
+        { "time": "10:00–13:00", "type": "workshop",   "title_pl": "Uruchomienie serwera i rozpoczęcie rozgrywki", "title_en": "Open game server for live competition",               "speaker": null },
+        { "time": "13:00–14:00", "type": "logistics",  "title_pl": "Przerwa obiadowa",                           "title_en": "Lunch Break",                                            "speaker": null },
+        { "time": "14:00–16:30", "type": "workshop",   "title_pl": "Ponowne uruchomienie serwera",               "title_en": "Re-open game server for live competition",               "speaker": null },
+        { "time": "16:30–17:00", "type": "logistics",  "title_pl": "Zamknięcie ćwiczeń i ogłoszenie wyników",    "title_en": "Close game and announce winners",                        "speaker": null },
+        { "time": "17:00–17:15", "type": "logistics",  "title_pl": "Zakończenie i podsumowanie",                 "title_en": "Closing remarks",                                        "speaker": null }
       ]
     }
   ]
